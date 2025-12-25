@@ -6,8 +6,6 @@ A production-ready CI/CD platform showcasing Infrastructure as Code, GitOps prin
 
 To be updated
 
----
-
 ## 🏗️ Architecture
 
 ![Architecture Diagram](./EKS-Gitops-Automation-Architecture.jpg)
@@ -58,6 +56,4 @@ All infrastructure is provisioned as code using Terraform, making the entire sta
 - Multi-AZ deployment for high availability and fault tolerance
 - Application Load Balancer for automatic traffic distribution
 - Secure architecture with private subnets and IAM-based access control
-
----
 
