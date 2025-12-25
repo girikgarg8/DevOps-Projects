@@ -4,7 +4,7 @@ A production-ready CI/CD platform showcasing Infrastructure as Code, GitOps prin
 
 ## 📺 Demo Video
 
-To be updated
+https://drive.google.com/file/d/1x7aqW-b3L8U-1vhxje6Qfc4DfUgQDqYg/view?usp=sharing 
 
 ## 🏗️ Architecture
 
