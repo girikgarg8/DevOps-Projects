@@ -1,0 +1,522 @@
+# ============================================
+# EKS GitOps Automation - Comprehensive .gitignore
+# ============================================
+
+# ============================================
+# TERRAFORM - State & Configuration
+# ============================================
+# Terraform directories
+**/.terraform/*
+.terraform/
+.terraform.lock.hcl
+
+# State files - CRITICAL: Never commit!
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+terraform.tfstate.d/
+
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform plan files
+*.tfplan
+tfplan
+tfplan.*
+
+# Terraform CLI config
+.terraformrc
+terraform.rc
+
+# Crash logs
+crash.log
+crash.*.log
+
+# ============================================
+# AWS CREDENTIALS - CRITICAL SECURITY!
+# ============================================
+# AWS credential files
+.aws/
+**/credentials
+**/config
+aws-credentials
+aws-credentials.*
+*-credentials.json
+credentials.csv
+
+# AWS keys
+*.pem
+*.key
+*.ppk
+*-key-pair.pem
+*.pem.*
+
+# AWS CLI cache
+.aws-cli/
+aws-cli/
+
+# IAM related
+*-iam-policy.json
+*-iam-role.json
+
+# ============================================
+# ENVIRONMENT VARIABLES & SECRETS
+# ============================================
+# Environment files
+.env
+.env.*
+*.env
+.envrc
+.env.local
+.env.*.local
+.env.production
+.env.staging
+.env.development
+.env.test
+
+# Secret files
+secrets/
+secret.*
+*.secret
+*.secrets
+*-secrets.yaml
+*-secrets.yml
+secrets.yaml
+secrets.yml
+secret-values.yaml
+
+# Keep example files only
+!.env.example
+!.env.sample
+!secrets.example.yaml
+
+# ============================================
+# KUBERNETES & HELM
+# ============================================
+# Kubeconfig files
+kubeconfig
+kubeconfig.*
+**/kubeconfig
+*.kubeconfig
+.kube/
+kube-config
+kube-config.*
+
+# Helm
+.helm/
+*.tgz
+charts/**/*.tgz
+requirements.lock
+Chart.lock
+
+# Kubernetes secrets
+*-secret.yaml
+*-secret.yml
+k8s-secrets/
+
+# ============================================
+# ARGOCD
+# ============================================
+# ArgoCD config
+.argocd/
+argocd-config/
+argocd-password
+argocd-admin-password
+*argocd*.password
+
+# ============================================
+# DOCKER & CONTAINER REGISTRIES
+# ============================================
+# Docker config
+.docker/
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Container registry credentials
+.dockercfg
+.docker/config.json
+registry-credentials.json
+
+# ============================================
+# CI/CD - CircleCI, GitHub Actions, etc.
+# ============================================
+# CircleCI local
+.circleci/local/
+.circleci/**/*.env
+
+# GitHub Actions secrets
+.github/secrets/
+.github/**/*.env
+
+# Jenkins
+jenkins-secrets/
+
+# GitLab CI
+.gitlab-ci-local/
+
+# CI/CD credentials
+ci-secrets/
+*-ci-token
+*-ci-key
+
+# ============================================
+# SSL/TLS CERTIFICATES & KEYS
+# ============================================
+*.crt
+*.cer
+*.pem
+*.p12
+*.pfx
+*.key
+*.pub
+*.der
+*.csr
+*.keystore
+*.jks
+*.p7b
+*.p7c
+ssl/
+certs/
+certificates/
+
+# Keep examples only
+!**/*.example.crt
+!**/*.example.key
+!**/*.sample.pem
+
+# ============================================
+# SSH KEYS
+# ============================================
+id_rsa
+id_rsa.*
+id_dsa
+id_dsa.*
+id_ecdsa
+id_ecdsa.*
+id_ed25519
+id_ed25519.*
+*.pub
+known_hosts
+authorized_keys
+
+# ============================================
+# DATABASE CREDENTIALS
+# ============================================
+*-database.yml
+*-database.yaml
+database-credentials.*
+db-credentials.*
+*.sql.gz
+*.sql.zip
+dump.sql
+*.dump
+
+# ============================================
+# APPLICATION SPECIFIC
+# ============================================
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+
+# Node.js
+node_modules/
+jspm_packages/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Go
+vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# ============================================
+# IDE & EDITOR FILES
+# ============================================
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# Cursor
+.cursor/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+*.swp
+*.swo
+*~
+Session.vim
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+.\#*
+.projectile
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+atlassian-ide-plugin.xml
+
+# ============================================
+# OPERATING SYSTEM FILES
+# ============================================
+# macOS
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+.Trash-*
+.nfs*
+.directory
+
+# ============================================
+# LOGS & DEBUGGING
+# ============================================
+*.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+debug.log
+error.log
+access.log
+combined.log
+
+# ============================================
+# TEMPORARY & CACHE FILES
+# ============================================
+*.tmp
+*.temp
+tmp/
+temp/
+.cache/
+cache/
+*.cache
+.sass-cache/
+
+# ============================================
+# BACKUP FILES
+# ============================================
+*.bak
+*.backup
+*.back
+*.old
+*.orig
+*~
+*.swp
+*.swo
+
+# ============================================
+# ARCHIVES & COMPRESSED FILES
+# ============================================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+
+# ============================================
+# BUILD ARTIFACTS
+# ============================================
+build/
+dist/
+target/
+out/
+bin/
+obj/
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+
+# ============================================
+# TEST & COVERAGE
+# ============================================
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+test-output/
+test-results/
+*.test
+*.spec
+
+# ============================================
+# PROJECT SPECIFIC FILES
+# ============================================
+# Bootstrap outputs
+terraform/bootstrap/backend-info.txt
+terraform/bootstrap/*.log
+
+# Local notes & scratch
+NOTES.md
+TODO.local.md
+SCRATCH.md
+scratch.*
+notes/
+.notes/
+
+# Local scripts
+local-*.sh
+test-*.sh
+dev-*.sh
+
+# ============================================
+# DOCUMENTATION BUILD FILES
+# ============================================
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+Gemfile.lock
+
+# ============================================
+# SECURITY SCANNING RESULTS
+# ============================================
+trivy-report.*
+snyk-report.*
+security-scan.*
+vulnerability-report.*
+
+# ============================================
+# KEEP THESE EXAMPLE FILES
+# ============================================
+!.env.example
+!.env.sample
+!terraform.tfvars.example
+!terraform.tfvars.sample
+!kubeconfig.example
+!secrets.example.yaml
+!*.example.*
+
+# ============================================
+# PERSONAL RECORDING NOTES
+# ============================================
+project_recording.md
+

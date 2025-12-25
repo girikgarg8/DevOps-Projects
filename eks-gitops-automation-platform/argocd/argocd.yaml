@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp
+  namespace: argocd
+spec:
+  project: default
+  
+  # Source - Your Git repository with Kubernetes manifests
+  source:
+    repoURL: https://github.com/girikgarg8/EKS-Gitops-Automation-Kubernetes
+    targetRevision: HEAD  # or main, master, specific branch/tag
+    path: manifest  # folder in repo containing k8s manifests
+  
+  # Destination - Where to deploy in your cluster
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myapp
+  
+  # Sync Policy - How ArgoCD should sync
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true  # Auto-create namespace if missing
+    automated:
+      selfHeal: true   # Auto-fix drift
+      prune: true      # Auto-delete removed resources

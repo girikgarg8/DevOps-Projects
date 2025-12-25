@@ -1,0 +1,11 @@
+To install ArgoCD in the EKS cluster:
+
+kubectl create namespace argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+To create a port-forward tunnel from local machine to the ArgoCD server running in Kubernetes cluster:
+
+kubectl port-forward svc/argocd-server 8080:443 -n argocd
+
+And to apply the argocd manifest, k apply -f argocd.yaml
