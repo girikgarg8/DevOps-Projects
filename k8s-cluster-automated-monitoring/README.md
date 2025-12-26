@@ -8,7 +8,7 @@ To be updated
 
 ## 🏗️ Architecture
 
-![Monitoring Architecture](./architecture-diagram.png)
+![Monitoring Architecture](./Architecture-Diagram.png)
 
 The project implements a complete observability stack following the Prometheus monitoring pattern:
 
