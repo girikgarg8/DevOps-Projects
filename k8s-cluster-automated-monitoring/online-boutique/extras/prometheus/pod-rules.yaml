@@ -59,7 +59,7 @@ spec:
     # Alert when payment service pods are not ready
     - alert: PaymentserviceUnavailable
       expr: kube_deployment_status_replicas_available{deployment="paymentservice"} == 0
-      for: 1m
+      for: 15s
       annotations:
         summary: Payment service has no available pods
         description: Paymentservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=paymentservice'

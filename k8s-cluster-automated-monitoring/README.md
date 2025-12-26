@@ -4,7 +4,9 @@ A production-ready observability platform showcasing comprehensive monitoring, a
 
 ## 📺 Demo Video
 
-To be updated
+[![Watch Demo](https://img.shields.io/badge/▶️_Watch-Demo_Video-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/11Q4v9M6WYbZUTywsr-RVr6Bqy_LUO6_F/view?usp=sharing)
+
+Complete walkthrough showing architecture, live monitoring, alerting pipeline, and incident detection with sub-minute MTTD.
 
 ## 🏗️ Architecture
 

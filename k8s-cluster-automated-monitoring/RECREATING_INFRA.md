@@ -136,6 +136,7 @@ echo "Grafana Password: $GRAFANA_PASSWORD"
 cd online-boutique/extras/prometheus
 
 # Apply custom PrometheusRule for all 11 microservices
+# Note: PaymentService alert has 15s threshold for quick demo
 kubectl apply -f pod-rules.yaml
 
 # Verify rules are created
@@ -255,6 +256,7 @@ kubectl delete -f online-boutique/extras/prometheus/alertmanagerconfig.yaml
 kubectl delete secret alertmanager-slack-webhook -n default
 
 # Delete EKS cluster (if created specifically for demo)
+# This command deletes the cluster and all nodegroups automatically
 eksctl delete cluster --name monitoring-demo-cluster --region ap-south-1
 ```
 

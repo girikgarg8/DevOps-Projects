@@ -4,7 +4,9 @@ A production-ready CI/CD platform showcasing Infrastructure as Code, GitOps prin
 
 ## 📺 Demo Video
 
-https://drive.google.com/file/d/1x7aqW-b3L8U-1vhxje6Qfc4DfUgQDqYg/view?usp=sharing 
+[![Watch Demo](https://img.shields.io/badge/▶️_Watch-Demo_Video-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1x7aqW-b3L8U-1vhxje6Qfc4DfUgQDqYg/view?usp=sharing)
+
+End-to-end demonstration from code commit through CI/CD pipeline to automated deployment on EKS via ArgoCD. 
 
 ## 🏗️ Architecture
 
