@@ -68,10 +68,12 @@ coreDns:
 kubeProxy:
   enabled: false
 
-# Disable CPU overcommit alert (too sensitive for EKS)
+# Disable unnecessary rules for EKS
 defaultRules:
   rules:
     kubeScheduler: false
     kubeControllerManager: false
     etcd: false
+    # Disable InfoInhibitor - noisy and not useful for our setup
+    infoInhibitor: false
 

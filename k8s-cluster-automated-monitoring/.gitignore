@@ -1,0 +1,16 @@
+# Demo recording scripts (for personal use)
+project_recording.md
+get_urls.sh
+
+# Helm charts cache
+*.tgz
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
