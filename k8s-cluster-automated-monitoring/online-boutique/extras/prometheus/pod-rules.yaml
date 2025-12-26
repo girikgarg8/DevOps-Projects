@@ -1,0 +1,155 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: online-boutique-pod-uptime
+  labels:
+    release: tutorial
+spec:
+  groups:
+  - name: Online Boutique Pod Health
+    interval: 30s
+    rules:
+    # Alert when frontend pods are not ready
+    - alert: FrontendUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="frontend"} == 0
+      for: 1m
+      annotations:
+        summary: Frontend service has no available pods
+        description: Frontend deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=frontend'
+      labels:
+        severity: 'critical'
+        service: 'frontend'
+    
+    # Alert when cart service pods are not ready
+    - alert: CartserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="cartservice"} == 0
+      for: 1m
+      annotations:
+        summary: Cart service has no available pods
+        description: Cartservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=cartservice'
+      labels:
+        severity: 'critical'
+        service: 'cartservice'
+    
+    # Alert when checkout service pods are not ready
+    - alert: CheckoutserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="checkoutservice"} == 0
+      for: 1m
+      annotations:
+        summary: Checkout service has no available pods
+        description: Checkoutservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=checkoutservice'
+      labels:
+        severity: 'critical'
+        service: 'checkoutservice'
+    
+    # Alert when payment service pods are not ready
+    - alert: PaymentserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="paymentservice"} == 0
+      for: 1m
+      annotations:
+        summary: Payment service has no available pods
+        description: Paymentservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=paymentservice'
+      labels:
+        severity: 'critical'
+        service: 'paymentservice'
+    
+    # Alert when product catalog service pods are not ready
+    - alert: ProductcatalogserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="productcatalogservice"} == 0
+      for: 1m
+      annotations:
+        summary: Product Catalog service has no available pods
+        description: Productcatalogservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=productcatalogservice'
+      labels:
+        severity: 'warning'
+        service: 'productcatalogservice'
+    
+    # Alert when currency service pods are not ready
+    - alert: CurrencyserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="currencyservice"} == 0
+      for: 1m
+      annotations:
+        summary: Currency service has no available pods
+        description: Currencyservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=currencyservice'
+      labels:
+        severity: 'warning'
+        service: 'currencyservice'
+    
+    # Alert when shipping service pods are not ready
+    - alert: ShippingserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="shippingservice"} == 0
+      for: 1m
+      annotations:
+        summary: Shipping service has no available pods
+        description: Shippingservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=shippingservice'
+      labels:
+        severity: 'warning'
+        service: 'shippingservice'
+    
+    # Alert when email service pods are not ready
+    - alert: EmailserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="emailservice"} == 0
+      for: 1m
+      annotations:
+        summary: Email service has no available pods
+        description: Emailservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=emailservice'
+      labels:
+        severity: 'warning'
+        service: 'emailservice'
+    
+    # Alert when recommendation service pods are not ready
+    - alert: RecommendationserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="recommendationservice"} == 0
+      for: 1m
+      annotations:
+        summary: Recommendation service has no available pods
+        description: Recommendationservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=recommendationservice'
+      labels:
+        severity: 'warning'
+        service: 'recommendationservice'
+    
+    # Alert when ad service pods are not ready
+    - alert: AdserviceUnavailable
+      expr: kube_deployment_status_replicas_available{deployment="adservice"} == 0
+      for: 1m
+      annotations:
+        summary: Ad service has no available pods
+        description: Adservice deployment has 0 available replicas. Check pods with 'kubectl get pods -l app=adservice'
+      labels:
+        severity: 'warning'
+        service: 'adservice'
+    
+    # High restart rate alerts
+    - alert: HighPodRestartRate
+      expr: rate(kube_pod_container_status_restarts_total{namespace="default"}[15m]) > 0.1
+      for: 5m
+      annotations:
+        summary: Pod {{ $labels.pod }} is restarting frequently
+        description: Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has restarted {{ $value }} times in the last 15 minutes
+      labels:
+        severity: 'warning'
+    
+    # Pod crash loop detection
+    - alert: PodCrashLooping
+      expr: rate(kube_pod_container_status_restarts_total{namespace="default"}[30m]) > 0.05
+      for: 10m
+      annotations:
+        summary: Pod {{ $labels.pod }} is crash looping
+        description: Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is in CrashLoopBackOff state
+      labels:
+        severity: 'critical'
+

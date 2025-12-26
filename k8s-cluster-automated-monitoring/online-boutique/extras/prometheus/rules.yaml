@@ -1,0 +1,106 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: uptime-rule
+  labels:
+    release: tutorial
+spec:
+  groups:
+  - name: Microservices uptime
+    interval: 60s
+    rules:
+    - alert: FrontendUnavailable
+      expr: probe_success{app="online-boutique",job="frontend"} == 0
+      for: 1m
+      annotations:
+        summary: Frontend Service is unavailable
+        description: Check Frontend pods and its logs
+      labels:
+        severity: 'critical'
+    - alert: CartserviceUnavailable
+      expr: probe_success{app="online-boutique",job="cartservice"} == 0
+      for: 1m
+      annotations:
+        summary: Cart Service is unavailable
+        description: Check Cart Service pods and its logs
+      labels:
+        severity: 'critical'
+    - alert: CheckoutserviceUnavailable
+      expr: probe_success{app="online-boutique",job="checkoutservice"} == 0
+      for: 1m
+      annotations:
+        summary: Checkout Service is unavailable
+        description: Check Checkout Service pods and its logs
+      labels:
+        severity: 'critical'
+    - alert: ProductcatalogserviceUnavailable
+      expr: probe_success{app="online-boutique",job="productcatalogservice"} == 0
+      for: 1m
+      annotations:
+        summary: Product Catalog Service is unavailable
+        description: Check Product Catalog Service pods and its logs
+      labels:
+        severity: 'warning'
+    - alert: CurrencyserviceUnavailable
+      expr: probe_success{app="online-boutique",job="currencyservice"} == 0
+      for: 1m
+      annotations:
+        summary: Currency Service is unavailable
+        description: Check Currency Service pods and its logs
+      labels:
+        severity: 'warning'
+    - alert: PaymentserviceUnavailable
+      expr: probe_success{app="online-boutique",job="paymentservice"} == 0
+      for: 1m
+      annotations:
+        summary: Payment Service is unavailable
+        description: Check Payment Service pods and its logs
+      labels:
+        severity: 'critical'
+    - alert: ShippingserviceUnavailable
+      expr: probe_success{app="online-boutique",job="shippingservice"} == 0
+      for: 1m
+      annotations:
+        summary: Shipping Service is unavailable
+        description: Check Shipping Service pods and its logs
+      labels:
+        severity: 'warning'
+    - alert: EmailserviceUnavailable
+      expr: probe_success{app="online-boutique",job="emailservice"} == 0
+      for: 1m
+      annotations:
+        summary: Email Service is unavailable
+        description: Check Email Service pods and its logs
+      labels:
+        severity: 'warning'
+    - alert: RecommendationserviceUnavailable
+      expr: probe_success{app="online-boutique",job="recommendationservice"} == 0
+      for: 1m
+      annotations:
+        summary: Recommendation Service is unavailable
+        description: Check Recommendation Service pods and its logs
+      labels:
+        severity: 'warning'
+    - alert: AdserviceUnavailable
+      expr: probe_success{app="online-boutique",job="adservice"} == 0
+      for: 1m
+      annotations:
+        summary: Ad Service is unavailable
+        description: Check Ad Service pods and its logs
+      labels:
+        severity: 'warning'
+

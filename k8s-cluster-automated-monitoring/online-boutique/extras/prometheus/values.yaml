@@ -1,0 +1,57 @@
+# Prometheus Community chart values for Online Boutique monitoring
+
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+
+prometheus:
+  prometheusSpec:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+
+# Enable Prometheus Blackbox Exporter for probes
+prometheus-node-exporter:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+# Grafana configuration
+grafana:
+  enabled: true
+  adminPassword: "admin"
+
+# Keep default monitoring targets enabled
+kubelet:
+  enabled: true
+kubeApiServer:
+  enabled: true
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+coreDns:
+  enabled: true
+kubeProxy:
+  enabled: false
+

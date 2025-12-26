@@ -1,0 +1,206 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: frontend-probe
+  labels:
+    release: tutorial
+spec:
+  jobName: frontend
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - frontend:80
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: cartservice-probe
+spec:
+  jobName: cartservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - cartservice:7070
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: productcatalogservice-probe
+spec:
+  jobName: productcatalogservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - productcatalogservice:3550
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: checkoutservice-probe
+spec:
+  jobName: checkoutservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - checkoutservice:5050
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: shippingservice-probe
+spec:
+  jobName: shippingservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - shippingservice:50051
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: currencyservice-probe
+spec:
+  jobName: currencyservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - currencyservice:7000
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: paymentservice-probe
+spec:
+  jobName: paymentservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - paymentservice:50051
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: emailservice-probe
+spec:
+  jobName: emailservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - emailservice:5000
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: recommendationservice-probe
+spec:
+  jobName: recommendationservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - recommendationservice:8080
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: adservice-probe
+spec:
+  jobName: adservice
+  prober:
+    url: tutorial-kube-prometheus-s-blackbox-exporter:19115
+    path: /probe
+  module: http_2xx
+  interval: 60s
+  scrapeTimeout: 30s
+  targets:
+    staticConfig:
+      labels:
+        app: online-boutique
+      static:
+        - adservice:9555
+

@@ -1,0 +1,77 @@
+# Prometheus values optimized for AWS EKS
+# Disables control plane monitoring (not available on managed K8s)
+
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+
+prometheus:
+  service:
+    type: LoadBalancer
+  prometheusSpec:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+
+# Enable node and pod monitoring
+prometheus-node-exporter:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+# Grafana configuration
+grafana:
+  enabled: true
+  service:
+    type: LoadBalancer
+
+# Disable control plane monitoring (not available on EKS)
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+# Keep these enabled for EKS
+kubelet:
+  enabled: true
+
+kubeApiServer:
+  enabled: true
+
+coreDns:
+  enabled: true
+
+kubeProxy:
+  enabled: false
+
+# Disable CPU overcommit alert (too sensitive for EKS)
+defaultRules:
+  rules:
+    kubeScheduler: false
+    kubeControllerManager: false
+    etcd: false
+
